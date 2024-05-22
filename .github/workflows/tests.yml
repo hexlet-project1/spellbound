@@ -1,0 +1,26 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    types: [opened, edited, reopened]
+    branches:
+      - "*"
+  merge_group:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        commands: [lint, prettier]
+    steps:
+      - uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm ci
+      - name: ${{ matrix.commands }}
+        run: npm run ${{ matrix.commands }}
