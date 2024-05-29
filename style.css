@@ -1,0 +1,230 @@
+/* CSS ГЛАВНОЕ МЕНЮ */
+.menu { /* меню */
+    background-image: url(img/image\ 1.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+.text_center { /* текст по центру в главном меню */
+    display: flex;
+    position: absolute;
+	top: 41%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+}
+
+.name_game { /* настройки для текста с названием игры в главно меню */
+    font-size: 64px;
+    font-family: 'Peralta';
+    color: white;
+}
+
+.button_menu { /* кнопки в главном меню */
+    width: 340px;
+    height: 62px;
+
+    background-color: #56171F;
+
+    border: none;
+    border-radius: 10px;
+}
+
+button:hover { /* изменение цвета кнопок при наведении */
+    background-color: #381015;
+}
+
+.text_menu_but { /* текст на кнопках в главном меню */
+    color: white;
+    line-height: 150%;
+    font-size: 20px;
+    font-family: 'Peralta';
+}
+
+.but1_menu { /* кнопка 1 в главном меню */
+    display: flex;
+    position: absolute;
+	top: 53%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.but2_menu { /* кнопка 2 в главном меню */
+    display: flex;
+    position: absolute;
+	top: 62%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.but3_menu { /* кнопка 3 в главном меню */
+    display: flex;
+    position: absolute;
+	top: 71%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+
+    align-items: center;
+    justify-content: center;
+}
+
+/* КОНЕЦ ГЛАВНОГО МЕНЮ */
+
+/* CSS НАСТРОЙКИ */
+
+.settings { /* прозрачный блок настроек */
+    display: block;
+    position: absolute;
+
+    top: 20%;
+    left: 40%;
+    margin: -125px 0 0 -125px;
+
+    width: 650px;
+    height: 820px;  
+
+    background: rgb(129, 62, 76, .8);
+
+
+    border-radius: 50px;
+}
+
+.text_control { /* текст управления */
+    font-size: 36px;
+    font-family: 'Peralta';
+
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.text_control_q { /* текст для q */
+    font-size: 36px;
+    font-family: 'Peralta';
+
+    color: white;
+    float: right;
+    margin-top: 4%;
+    margin-right: 35%;
+}
+
+.text_control_w { /* текст для w */
+    font-size: 36px;
+    font-family: 'Peralta';
+
+    color: white;
+    float: right;
+    margin-top: 8%;
+    margin-right: 35%;
+}
+
+.text_control_e {
+    font-size: 36px;
+    font-family: 'Peralta';
+
+    color: white;
+    float: right;
+    margin-top: 8%;
+    margin-right: 36%;
+}
+
+.text_control_r {
+    font-size: 36px;
+    font-family: 'Peralta';
+
+    color: white;
+    float: right;
+    margin-top: 8%;
+    margin-right: 36%;
+}
+
+.water {
+    width: 105px;
+    height: 103.33px;
+    margin-left: 23%;
+}
+
+.fire_air_ground {
+    width: 105px;
+    height: 103.33px;
+    margin-top: 27px;
+    margin-left: 23%;
+}
+
+.text_binding {
+    font-size: 36px;
+    font-family: 'Peralta';
+
+    color: white;
+    margin-left: 10%;
+}
+
+.text_bin_keys {
+    font-size: 16px;
+    font-family: 'Peralta';
+
+    color: white;
+}
+
+.text_reset {
+    position: relative;
+    top: -5px;
+    font-size: 16px;
+    font-family: 'Peralta';
+
+    padding: 3%;
+
+    color: white;
+}
+
+.but_set {
+    width: 150px;
+    height: 45px;
+
+    margin-left: 5%;
+    padding: 3%;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #56171F;
+}
+
+.but_set1 {
+    width: 100px;
+    height: 45px;
+
+    margin-left: 7%;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #56171F;
+}
+
+.text_back {
+    position: relative;
+    top: 10px;
+
+    margin-left: 1%;
+
+    font-size: 32px;
+    font-family: 'Peralta';
+
+    text-decoration: none;
+
+    color: white;
+}
+
+/* КОНЕЦ НАСТРОЕК */
