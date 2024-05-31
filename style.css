@@ -142,6 +142,7 @@ button:hover {
 }
 
 .text_control_e {
+  /* текст для e */
   font-size: 36px;
   font-family: "Peralta";
 
@@ -152,6 +153,7 @@ button:hover {
 }
 
 .text_control_r {
+  /* текст для r */
   font-size: 36px;
   font-family: "Peralta";
 
@@ -240,3 +242,105 @@ button:hover {
 }
 
 /* КОНЕЦ НАСТРОЕК */
+
+/* ВЫБОР УРОВНЕЙ "ПРОДОЛЖИТЬ" */
+
+.stage {
+  /* кнопки */
+  display: inline-block;
+
+  width: 200px;
+  height: 150px;
+
+  background-color: #56171f;
+
+  border-color: #56171f;
+  border-width: 5px;
+  border-radius: 20px;
+}
+
+.stage1 {
+  /* расположение первого блока */
+  text-align: center;
+  margin-top: 10%;
+}
+
+.stage2 {
+  /* расположение второго блока */
+  text-align: center;
+  margin-top: 2%;
+}
+
+.stage3 {
+  /* расположение третьего блока */
+  text-align: center;
+  margin-top: 2%;
+}
+
+.level_right {
+  /* пробел справа для кнопок */
+  margin-right: 100px;
+}
+
+.level_left {
+  /* пробел слева для кнопок */
+  margin-left: 100px;
+}
+
+/* при наведении на кнопку появление фона */
+
+.beach:hover {
+  background-image: url(img/beach_level.png);
+  background-size: cover;
+}
+
+.sea:hover {
+  background-image: url(img/sea_level.png);
+  background-size: cover;
+}
+
+.boss_sea:hover {
+  background-image: url(img/boss_sea.jpg);
+  background-size: cover;
+}
+
+.forest:hover {
+  background-image: url(img/forest_level.png);
+  background-size: cover;
+}
+
+.boss_forest:hover {
+  background-image: url(img/boss_forest.jpeg);
+  background-size: cover;
+}
+
+.mountains:hover {
+  background-image: url(img/mountains_level.jpeg);
+  background-size: cover;
+}
+
+.boss_mountains:hover {
+  background-image: url(img/boss_mountains.png);
+  background-size: cover;
+}
+
+.ash:hover {
+  background-image: url(img/ash_level.png);
+  background-size: cover;
+}
+
+.boss_ash:hover {
+  background-image: url(img/boss_ash.png);
+  background-size: cover;
+}
+
+/* конец с фонами */
+
+.text_level {
+  /* css для текста на кнопках */
+  font-family: "Peralta";
+  font-size: 32px;
+  color: white;
+}
+
+/* КОНЕЦ ВЫБОРА УРОВНЕЙ */
