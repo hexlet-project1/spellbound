@@ -1,0 +1,8 @@
+/node_modules/
+/.github/
+.prettierignore
+eslint.config.js
+makefile
+package-lock.json
+package.json
+.gitignore
