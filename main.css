@@ -248,6 +248,147 @@ button:hover {
 
 /* КОНЕЦ ВЫБОРА УРОВНЕЙ */
 
+/* НАЧАЛО БОЯ */
+
+:root {
+  --hp-percent: 50%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.stageone {
+  background-image: url(img/beach_level.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.cont {
+  width: 1400px;
+  height: 900px;
+
+  position: absolute;
+  left: 14%;
+  top: 3%;
+
+  border-radius: 30px;
+  background-color: rgb(58, 61, 108, 0.8);
+}
+/* Позиция элементов */
+.water_position {
+  width: 100px;
+  height: 100px;
+
+  margin-top: 45%;
+  margin-left: 5%;
+}
+
+.fire_position {
+  width: 100px;
+  height: 100px;
+
+  margin-left: 1%;
+}
+.earth_position {
+  width: 100px;
+  height: 100px;
+
+  margin-left: 1%;
+}
+
+.air_position {
+  width: 100px;
+  height: 100px;
+
+  margin-left: 1%;
+}
+/* Конец позиций */
+
+/* Стрелки */
+
+.arrow_1 {
+  width: 100px;
+  height: 100px;
+
+  float: right;
+
+  margin-top: 45%;
+  margin-right: 5%;
+}
+
+.arrow_2 {
+  width: 100px;
+  height: 100px;
+
+  float: right;
+
+  margin-top: 45%;
+  margin-right: 1%;
+}
+
+.arrow_3 {
+  width: 100px;
+  height: 100px;
+
+  transform: rotate(180deg);
+
+  float: right;
+
+  margin-top: 45%;
+  margin-right: 1%;
+}
+
+.arrow_4 {
+  width: 100px;
+  height: 100px;
+
+  transform: rotate(180deg);
+
+  float: right;
+
+  margin-top: 45%;
+  margin-right: 1%;
+}
+
+/* Конец стрелок */
+
+.hp {
+  display: inline-block;
+  min-height: 5vh;
+  min-width: 400px;
+  border: 1px solid black;
+}
+
+.enemy-hp {
+  margin-top: 3%;
+  margin-left: 5%;
+  background: linear-gradient(
+    110deg,
+    green var(--hp-percent),
+    gray calc(var(--hp-percent) + 2%)
+  );
+}
+
+.enemy-hp2 {
+  transform: rotate(180deg);
+  align-items: right;
+  margin-top: 3%;
+  margin-left: 32%;
+  background: linear-gradient(
+    110deg,
+    red var(--hp-percent),
+    gray calc(var(--hp-percent) + 2%)
+  );
+}
+
+/* КОНЕЦ БОЯ */
+
 .preload {
   display: none;
 }
