@@ -247,3 +247,7 @@ button:hover {
 }
 
 /* КОНЕЦ ВЫБОРА УРОВНЕЙ */
+
+.preload {
+  display: none;
+}

@@ -1,30 +1,24 @@
 const pagesData = {
   menu: `
   <div class="text_center">
-  <p class="text_gameName">SPELLBOUND</p>
-  <!-- Большой текст с названием игры -->
+    <p class="text_gameName">SPELLBOUND</p>
   </div>
-  <div>
-  <a href="continue.html"
-    ><button class="button_menu menu_continue">
-      <p class="text_menu_but">CONTINUE</p>
-    </button></a
-  >
-  <!-- Кнопка "продолжить" -->
-  
-    <button class="button_menu menu_newGame">
-      <p class="text_menu_but">NEW GAME</p>
-    </button></a
-  >
-  <!-- Кнопка "новая игра" -->
-
-    <button class="button_menu menu_settings">
-      <p class="text_menu_but">SETTINGS</p>
-    </button>
-  <!-- Кнопка "настройки" -->
-  </div>
-  `,
+  <button class="button_menu menu_newGame">
+    <p class="text_menu_but">NEW GAME</p>
+  </button>
+  <button class="button_menu menu_settings">
+    <p class="text_menu_but">SETTINGS</p>
+  </button>`,
   menuScripts() {
+    if (localStorage.getItem("currentStage") > 1) {
+      document.querySelector(".menu_newGame").insertAdjacentHTML(
+        "beforebegin",
+        `
+      <button class="button_menu menu_continue">
+        <p class="text_menu_but">CONTINUE</p>
+      </button>`,
+      );
+    }
     document
       .querySelectorAll(".button_menu")
       .forEach((button) => button.addEventListener("click", redrawHtml));
@@ -32,22 +26,19 @@ const pagesData = {
   newGame: `
   <a href="javascript:redrawHtml('menu')" class="text_back">&larr; Go Back</a>
   <div class="stages">
-  </div>
-  `,
+  </div>`,
   newGameScripts() {
     const stagesDiv = document.querySelector(".stages");
-    function createStages(stages) {
+    const createStages = (stages) => {
       for (let i = 0; i < stages; i += 1) {
         const stageIndex = i % 3;
         if (stageIndex === 0) {
           stagesDiv.insertAdjacentHTML(
             "beforeend",
-            `
-        <div class="stages_group">
-        </div>`,
+            `<div class="stages_group">
+            </div>`,
           );
         }
-
         stagesDiv.lastChild.insertAdjacentHTML(
           "beforeend",
           `
@@ -60,13 +51,13 @@ const pagesData = {
         stageStyle["background-size"] = "cover";
         stageStyle["background-image"] = `url(img/stage${i + 1}.png)`;
       }
-    }
-    createStages(9);
+    };
+    createStages(maxStage);
   },
   settings: `
-<a href="javascript:redrawHtml('menu')" class="text_back">&larr; Go Back</a>
-<div class="settings">
-  <p class="text_control">CONTROLLS</p>
+  <a href="javascript:redrawHtml('menu')" class="text_back">&larr; Go Back</a>
+  <div class="settings">
+    <p class="text_control">CONTROLLS</p>
   <div class = "skills">
   <img src="img/skill_water.png" class="skill_img" /><span class="text_keybind">
     - Q </span
@@ -87,23 +78,18 @@ const pagesData = {
   </span>
   </div>
   <div class="set_keybind">
-  <p class="text_binding">
+    <p class="text_binding">
   Set keybinds
   <button class="keybinds_reset"><span class="text_reset">RESET</span></button>
-</p>
-<button class="keybind water"><span class="text_bin_key"></span></button>
-<button class="keybind fire"><span class="text_bin_key"></span></button>
-<button class="keybind air"><span class="text_bin_key"></span></button>
-<button class="keybind earth"><span class="text_bin_key"></span></button>
+  </p>
+  <button class="keybind water"><span class="text_bin_key"></span></button>
+  <button class="keybind fire"><span class="text_bin_key"></span></button>
+  <button class="keybind air"><span class="text_bin_key"></span></button>
+  <button class="keybind earth"><span class="text_bin_key"></span></button>
   </div>
-</div>`,
+  </div>`,
   settingsScripts() {
-    document
-      .querySelector(".keybinds_reset")
-      .addEventListener("click", resetKeybinds);
-
     const buttons = document.querySelectorAll(".keybind");
-
     buttons.forEach((button) => {
       const name = button.className;
       if (!localStorage.getItem(name)) {
@@ -116,8 +102,7 @@ const pagesData = {
       );
       button.addEventListener("click", (event) => changeKeybind(event));
     });
-
-    function resetKeybinds() {
+    const resetKeybinds = () => {
       Object.entries(defaultKeys).forEach(([key, value]) => {
         changeLocalStorage(`keybind ${key}`, value);
         changeContent(
@@ -125,8 +110,14 @@ const pagesData = {
           value,
         );
       });
-    }
+    };
+    document
+      .querySelector(".keybinds_reset")
+      .addEventListener("click", resetKeybinds);
   },
+  continue: `
+  <a href="javascript:redrawHtml('menu')" class="text_back">&larr; Go Back</a>`,
+  continueScripts() {},
 };
 
 const defaultKeys = {
@@ -135,3 +126,8 @@ const defaultKeys = {
   air: "e",
   earth: "r",
 };
+const maxStage = 9;
+const pngTypeNames = ["skill_air", "skill_earth", "skill_fire", "skill_water"];
+for (let i = 0; i < maxStage; i += 1) {
+  pngTypeNames.push(`stage${i + 1}`);
+}

@@ -1,16 +1,36 @@
+/* eslint-disable */
 import globals from "globals";
+import babelParser from "@babel/eslint-parser";
+import path from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
 import pluginJs from "@eslint/js";
 
+// mimic CommonJS variables -- not needed if using CommonJS
+// 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const compat = new FlatCompat({baseDirectory: __dirname, recommendedConfig: pluginJs.configs.recommended});
+
 export default [
-  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
-  pluginJs.configs.recommended,
+  {languageOptions: {
+     globals: {...globals.browser, ...globals.node}, 
+     parser: babelParser}},
+  ...compat.extends("airbnb"),
   {
-    plugins: {
-      pluginJs,
-    },
     rules: {
       "no-unused-vars": "off",
       "no-undef": "off",
-    },
+      "no-use-before-define": "off",
+      "no-param-reassign": "off"
+    }
   },
+  {
+    "settings": {
+      "react": {
+        "version": "0"
+      }
+    }
+  }
 ];
+/* eslint-disable */
