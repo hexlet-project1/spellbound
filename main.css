@@ -1,6 +1,14 @@
+:root {
+  --hp-percent: 50%;
+}
+* {
+  box-sizing: border-box;
+}
+.preload {
+  display: none;
+}
 /* CSS ГЛАВНОЕ МЕНЮ */
 .menu_bg {
-  /* меню */
   background-image: url(img/menu_bg.png);
   background-repeat: no-repeat;
   background-position: center center;
@@ -12,7 +20,6 @@
 }
 
 .text_center {
-  /* текст по центру в главном меню */
   display: flex;
   position: absolute;
   top: 41%;
@@ -22,30 +29,24 @@
 }
 
 .text_gameName {
-  /* настройки для текста с названием игры в главно меню */
   font-size: 64px;
   font-family: "Peralta";
   color: white;
 }
 
 .button_menu {
-  /* кнопки в главном меню */
   width: 340px;
   height: 62px;
-
   background-color: #56171f;
-
   border: none;
   border-radius: 10px;
 }
 
 button:hover {
-  /* изменение цвета кнопок при наведении */
   background-color: #381015;
 }
 
 .text_menu_but {
-  /* текст на кнопках в главном меню */
   color: white;
   line-height: 150%;
   font-size: 20px;
@@ -53,47 +54,37 @@ button:hover {
 }
 
 .menu_continue {
-  /* кнопка 1 в главном меню */
   display: flex;
   position: absolute;
   top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   align-items: center;
   justify-content: center;
 }
 
 .menu_newGame {
-  /* кнопка 2 в главном меню */
   display: flex;
   position: absolute;
   top: 62%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   align-items: center;
   justify-content: center;
 }
 
 .menu_settings {
-  /* кнопка 3 в главном меню */
   display: flex;
   position: absolute;
   top: 71%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   align-items: center;
   justify-content: center;
 }
-
 /* КОНЕЦ ГЛАВНОГО МЕНЮ */
-
 /* CSS НАСТРОЙКИ */
-
 .settings {
-  /* прозрачный блок настроек */
   display: block;
   position: absolute;
 
@@ -110,7 +101,6 @@ button:hover {
 }
 
 .text_control {
-  /* текст управления */
   font-size: 36px;
   font-family: "Peralta";
 
@@ -120,10 +110,8 @@ button:hover {
 }
 
 .text_keybind {
-  /* текст для q */
   font-size: 36px;
   font-family: "Peralta";
-
   color: white;
   float: right;
   margin-top: 4%;
@@ -136,13 +124,20 @@ button:hover {
 
 .skill_img {
   width: 105px;
-  height: 103.33px;
+  height: 105px;
+  border-radius: 10%;
+  border-color: #381015;
+  border-style: solid;
+  border-width: 1%;
+}
+
+.skill_img:hover {
+  border-color: aqua;
 }
 
 .text_binding {
   font-size: 36px;
   font-family: "Peralta";
-
   color: white;
   margin-left: 10%;
 }
@@ -150,7 +145,6 @@ button:hover {
 .text_bin_key {
   font-size: 16px;
   font-family: "Peralta";
-
   color: white;
 }
 
@@ -159,107 +153,74 @@ button:hover {
   top: -5px;
   font-size: 16px;
   font-family: "Peralta";
-
   padding: 3%;
-
   color: white;
 }
 
 .keybinds_reset {
   width: 150px;
   height: 45px;
-
   margin-left: 5%;
   padding: 3%;
-
   border: none;
   border-radius: 10px;
-
   background-color: #56171f;
 }
 
 .keybind {
   width: 100px;
   height: 45px;
-
   margin-left: 7%;
-
   border: none;
   border-radius: 10px;
-
   background-color: #56171f;
 }
 
 .text_back {
   position: relative;
   top: 10px;
-
   margin-left: 1%;
-
   font-size: 32px;
   font-family: "Peralta";
-
   text-decoration: none;
-
   color: white;
 }
-
 /* КОНЕЦ НАСТРОЕК */
-
 /* ВЫБОР УРОВНЕЙ "ПРОДОЛЖИТЬ" */
-
 .stage {
   /* кнопки */
   display: inline-block;
-
   width: 200px;
   height: 150px;
-
   background-color: #56171f;
-
   border-color: #56171f;
   border-width: 5px;
   border-radius: 20px;
 }
 
 .stages {
-  /* расположение первого блока */
   text-align: center;
   margin-top: 10%;
 }
 
 .stages_group {
-  /* расположение второго блока */
   text-align: center;
   margin-top: 2%;
 }
 
 .stage_margin {
-  /* пробел справа для кнопок */
   margin-right: 100px;
 }
 
 .text_stage {
-  /* css для текста на кнопках */
   font-family: "Peralta";
   font-size: 32px;
   color: white;
 }
-
 /* КОНЕЦ ВЫБОРА УРОВНЕЙ */
-
 /* НАЧАЛО БОЯ */
 
-:root {
-  --hp-percent: 50%;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.stageone {
-  background-image: url(img/beach_level.png);
+.figth_stage_bg {
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -272,7 +233,6 @@ button:hover {
 .cont {
   width: 1400px;
   height: 900px;
-
   position: absolute;
   left: 14%;
   top: 3%;
@@ -280,83 +240,73 @@ button:hover {
   border-radius: 30px;
   background-color: rgb(58, 61, 108, 0.8);
 }
-/* Позиция элементов */
-.water_position {
-  width: 100px;
-  height: 100px;
 
-  margin-top: 45%;
-  margin-left: 5%;
+.interaction {
+  width: 96%;
+  height: 12%;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  top: 64vh;
+  left: 2vw;
 }
 
-.fire_position {
-  width: 100px;
-  height: 100px;
-
-  margin-left: 1%;
-}
-.earth_position {
-  width: 100px;
-  height: 100px;
-
-  margin-left: 1%;
+.fight_skills {
+  display: flex;
+  margin-left: 2%;
+  width: 60vw;
+  height: 12vh;
 }
 
-.air_position {
+.skill_position {
   width: 100px;
   height: 100px;
-
-  margin-left: 1%;
-}
-/* Конец позиций */
-
-/* Стрелки */
-
-.arrow_1 {
-  width: 100px;
-  height: 100px;
-
-  float: right;
-
-  margin-top: 45%;
   margin-right: 5%;
 }
 
-.arrow_2 {
-  width: 100px;
-  height: 100px;
-
-  float: right;
-
-  margin-top: 45%;
-  margin-right: 1%;
+.fight_skills_text {
+  color: white;
+  line-height: 150%;
+  font-size: 150%;
+  font-family: "Peralta";
+  text-align: center;
+}
+.arrows {
+  width: 20vw;
+  height: 12vh;
+  display: flex;
+  margin-right: 10%;
 }
 
-.arrow_3 {
+.arrow_left {
   width: 100px;
   height: 100px;
-
+  float: right;
   transform: rotate(180deg);
-
-  float: right;
-
-  margin-top: 45%;
-  margin-right: 1%;
+  margin-right: 5%;
 }
 
-.arrow_4 {
+.arrow_top {
   width: 100px;
   height: 100px;
-
-  transform: rotate(180deg);
-
   float: right;
-
-  margin-top: 45%;
+  transform: rotate(180deg);
   margin-right: 1%;
 }
 
-/* Конец стрелок */
+.arrow_bottom {
+  width: 100px;
+  height: 100px;
+  float: right;
+  margin-right: 1%;
+}
+
+.arrow_right {
+  width: 100px;
+  height: 100px;
+  float: right;
+  margin-right: 1%;
+}
 
 .hp {
   display: inline-block;
@@ -388,7 +338,3 @@ button:hover {
 }
 
 /* КОНЕЦ БОЯ */
-
-.preload {
-  display: none;
-}
