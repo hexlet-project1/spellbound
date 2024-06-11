@@ -53,7 +53,7 @@ const pagesData = {
         stageElem.addEventListener('click', redrawPage);
       }
     };
-    insertStages(Number(localStorage.getItem('currentStage')) + 1);
+    insertStages(Number(localStorage.getItem('currentStage')));
   },
   menu_newGame: '',
   menu_newGameScripts() {
