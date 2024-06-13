@@ -1,4 +1,5 @@
 const body = document.querySelector("body");
+
 const changeContent = (elem, value) => {
   elem.textContent = value;
 };
@@ -9,6 +10,7 @@ const changeKeybind = (event) => {
   elem.addEventListener("keyup", (e) => {
     const keyCode = e.code.toLowerCase();
     if (keyCode.startsWith("key")) {
+
       const key = keyCode.at(-1);
       if (!isUsedKey(key)) {
         changeLocalStorage(className, key);
@@ -27,18 +29,20 @@ const isUsedKey = (key) => {
 };
 const redrawPage = (event) => {
   const redraw = (className, scriptArg = null) => {
-    const [target, additional = null] = className.split("_");
+const [target, additional = null] = className.split("_");
     if (target === "menu") {
       body.classList = ["menu_bg"];
       body.innerHTML = pagesData[className];
       pagesData[`${className}Scripts`]();
     } else {
       body.classList = ["figth_stage_bg"];
+
       body.innerHTML = pagesData[target];
       pagesData[`${target}Scripts`](additional);
     }
   };
   redraw(event.currentTarget.className.split(" ").at(-1));
+
 };
 function preload(dir, files, type) {
   for (let i = 0; files.length > i; i += 1) {
@@ -51,6 +55,7 @@ function preload(dir, files, type) {
 }
 redrawPage({ currentTarget: { className: "menu" } });
 preload("./img/", pngTypeNames, ".png");
+
 Object.entries(defaultKeybinds).forEach(([key, value]) => {
   if (!localStorage.getItem(`keybind ${key}`)) {
     changeLocalStorage(`keybind ${key}`, value);
@@ -58,4 +63,5 @@ Object.entries(defaultKeybinds).forEach(([key, value]) => {
 });
 if (!localStorage.getItem("currentStage")) {
   localStorage.setItem("currentStage", 1);
+
 }

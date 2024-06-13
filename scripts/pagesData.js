@@ -13,6 +13,7 @@ const pagesData = {
     if (localStorage.getItem("currentStage") > 1) {
       document.querySelector(".menu_newGame").insertAdjacentHTML(
         "beforebegin",
+
         `
       <button class="button_menu menu_continue">
         <p class="text_menu_but">CONTINUE</p>
@@ -29,6 +30,7 @@ const pagesData = {
   </div>`,
   menu_continueScripts() {
     const stagesDiv = document.querySelector(".stages");
+
     const insertStages = (stages) => {
       for (let i = 0; i < stages; i += 1) {
         const stageIndex = i % 3;
@@ -94,6 +96,7 @@ const pagesData = {
     </div>
   </div>`,
   menu_settingsScripts() {
+
     const buttons = document.querySelectorAll(".keybind");
     buttons.forEach((button) => {
       const { className } = button;
