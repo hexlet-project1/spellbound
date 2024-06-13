@@ -338,3 +338,30 @@ button:hover {
 }
 
 /* КОНЕЦ БОЯ */
+
+/* ФИГУРКИ ГЕРОЕВ */
+
+.gg {
+  width: 300px;
+  height: 400px;
+
+  margin-top: 150px;
+  margin-left: 100px;
+}
+
+.golem {
+  width: 400px;
+  height: 500px;
+
+  margin-left: 500px;
+}
+
+.hero {
+  display: inline-block;
+}
+
+.enemy {
+  display: inline-block;
+}
+
+/* КОНЕЦ */
