@@ -1,7 +1,7 @@
 # Spellbound
+![alt text](/img/logo_little.png)
 
-
-***Spellbound*** is a browser game where the main character, a male or female, must control four natural elements.
+Spellbound is a browser game where the main character, a male or female, must control four natural elements.
 
 ## Game Synopsis
 The main character is learning from an old mage, the last keeper of ancient knowledge of elemental magic. However, the training is interrupted by fire boulders falling from the volcano on a neighboring island, which has suddenly awakened. One of the boulders turns out to be a fire golem and fatally wounds the old mage. After the hero manages to defeat the golem, the dying teacher reveals that it was meant to happen. He was training the hero to save the world from the eruption of a huge volcano. The young mage sets out on a journey. Ahead of him are several locations: sea, forest, mountains, and ash plateau. Along the way, he encounters various elemental enemies with whom he must fight or perish. The hero must defeat these enemies and put the fiery monster back to sleep in the depths of the volcano to save the world.
