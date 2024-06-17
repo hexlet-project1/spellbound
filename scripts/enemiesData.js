@@ -18,8 +18,8 @@ class Entity {
       const enemyElemRes = enemyInfo.elementPercents[currTypes[i]].resistance;
       percentNum += currElemDmg - enemyElemRes;
     }
-    enemyInfo.currentHp -=
-      currInfo.baseAtk * (percentNum / 100) * (finalPercent / 100);
+    enemyInfo.currentHp
+      -= currInfo.baseAtk * (percentNum / 100) * (finalPercent / 100);
   }
 }
 
@@ -31,8 +31,8 @@ function getEnemiesStage(stage) {
 }
 const entities = {
   player: {
-    imgUrl: "./img/entity_player_female.png",
-    types: ["****"],
+    imgUrl: './img/entity_player_female.png',
+    types: ['****'],
     maxHp: 100,
     baseAtk: 15,
     atkDelay: 0,
@@ -44,8 +44,8 @@ const entities = {
     },
   },
   fireGolem: {
-    imgUrl: "./img/entity_fireGolem.png",
-    types: ["fire"],
+    imgUrl: './img/entity_fireGolem.png',
+    types: ['fire'],
     maxHp: 60,
     baseAtk: 10,
     atkDelay: 10,
@@ -57,8 +57,8 @@ const entities = {
     },
   },
   turtle: {
-    imgUrl: "./img/entity_turtle.png",
-    types: ["water", "earth"],
+    imgUrl: './img/entity_turtle.png',
+    types: ['water', 'earth'],
     maxHp: 45,
     baseAtk: 10,
     atkDelay: 10,
@@ -70,8 +70,8 @@ const entities = {
     },
   },
   waterElemental: {
-    imgUrl: "./img/entity_waterElemental.png",
-    types: ["water"],
+    imgUrl: './img/entity_waterElemental.png',
+    types: ['water'],
     maxHp: 60,
     baseAtk: 15,
     atkDelay: 10,
@@ -83,8 +83,8 @@ const entities = {
     },
   },
   kraken: {
-    imgUrl: "./img/entity_kraken.png",
-    types: ["water", "earth"],
+    imgUrl: './img/entity_kraken.png',
+    types: ['water', 'earth'],
     maxHp: 65,
     baseAtk: 15,
     atkDelay: 10,
@@ -96,8 +96,8 @@ const entities = {
     },
   },
   waterSnake: {
-    imgUrl: "./img/entity_waterSnake.png",
-    types: ["water"],
+    imgUrl: './img/entity_waterSnake.png',
+    types: ['water'],
     maxHp: 80,
     baseAtk: 25,
     atkDelay: 7,
@@ -109,8 +109,8 @@ const entities = {
     },
   },
   tree: {
-    imgUrl: "./img/entity_tree.png",
-    types: ["earth"],
+    imgUrl: './img/entity_tree.png',
+    types: ['earth'],
     maxHp: 75,
     baseAtk: 25,
     atkDelay: 7,
@@ -122,8 +122,8 @@ const entities = {
     },
   },
   spider: {
-    imgUrl: "./img/entity_spider.png",
-    types: ["earth"],
+    imgUrl: './img/entity_spider.png',
+    types: ['earth'],
     maxHp: 70,
     baseAtk: 15,
     atkDelay: 7,
@@ -135,8 +135,8 @@ const entities = {
     },
   },
   earthGolem: {
-    imgUrl: "./img/entity_earthGolem.png",
-    types: ["earth"],
+    imgUrl: './img/entity_earthGolem.png',
+    types: ['earth'],
     maxHp: 100,
     baseAtk: 25,
     atkDelay: 6,
@@ -148,8 +148,8 @@ const entities = {
     },
   },
   yeti: {
-    imgUrl: "./img/entity_yeti.png",
-    types: ["water", "earth"],
+    imgUrl: './img/entity_yeti.png',
+    types: ['water', 'earth'],
     maxHp: 75,
     baseAtk: 25,
     atkDelay: 7,
@@ -161,8 +161,8 @@ const entities = {
     },
   },
   harpy: {
-    imgUrl: "./img/entity_harpy.png",
-    types: ["air", "earth"],
+    imgUrl: './img/entity_harpy.png',
+    types: ['air', 'earth'],
     maxHp: 85,
     baseAtk: 25,
     atkDelay: 5,
@@ -174,8 +174,8 @@ const entities = {
     },
   },
   airElemental: {
-    imgUrl: "./img/entity_airElemental.png",
-    types: ["air", "water"],
+    imgUrl: './img/entity_airElemental.png',
+    types: ['air', 'water'],
     maxHp: 115,
     baseAtk: 20,
     atkDelay: 7,
@@ -187,8 +187,8 @@ const entities = {
     },
   },
   fireElemental: {
-    imgUrl: "./img/entity_fireElemental.png",
-    types: ["fire"],
+    imgUrl: './img/entity_fireElemental.png',
+    types: ['fire'],
     maxHp: 85,
     baseAtk: 50,
     atkDelay: 7,
@@ -200,8 +200,8 @@ const entities = {
     },
   },
   ashenDevil: {
-    imgUrl: "./img/entity_ashenDevil.png",
-    types: ["fire", "earth"],
+    imgUrl: './img/entity_ashenDevil.png',
+    types: ['fire', 'earth'],
     maxHp: 115,
     baseAtk: 40,
     atkDelay: 7,
@@ -213,8 +213,8 @@ const entities = {
     },
   },
   vulcanoGoddess: {
-    imgUrl: "./img/entity_vulcanoGoddess.png",
-    types: ["fire", "earth"],
+    imgUrl: './img/entity_vulcanoGoddess.png',
+    types: ['fire', 'earth'],
     maxHp: 150,
     baseAtk: 50,
     atkDelay: 7,
@@ -227,13 +227,13 @@ const entities = {
   },
 };
 const stageEnemyNames = [
-  ["fireGolem", "turtle"],
-  ["waterElemental", "kraken"],
-  ["waterSnake"],
-  ["tree", "spider"],
-  ["earthGolem"],
-  ["yeti", "airElemental"],
-  ["fireGolem", "harpy"],
-  ["ashenDevil", "fireElemental"],
-  ["vulcanoGoddess"],
+  ['fireGolem', 'turtle'],
+  ['waterElemental', 'kraken'],
+  ['waterSnake'],
+  ['tree', 'spider'],
+  ['earthGolem'],
+  ['yeti', 'airElemental'],
+  ['fireGolem', 'harpy'],
+  ['ashenDevil', 'fireElemental'],
+  ['vulcanoGoddess'],
 ];
