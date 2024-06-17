@@ -22,7 +22,9 @@ export default [
       "no-unused-vars": "off",
       "no-undef": "off",
       "no-use-before-define": "off",
-      "no-param-reassign": "off"
+      "no-param-reassign": "off",
+      "no-console": "off",
+      "class-methods-use-this": "off",
     }
   },
   {

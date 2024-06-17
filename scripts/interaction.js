@@ -26,7 +26,7 @@ const isUsedKey = (key) => {
   return false;
 };
 const redrawPage = (event) => {
-  const redraw = (className, scriptArg = null) => {
+  const redraw = (className) => {
     const [target, additional = null] = className.split('_');
     if (target === 'menu') {
       body.classList = ['menu_bg'];
@@ -49,8 +49,11 @@ function preload(dir, files, type) {
     body.removeChild(img);
   }
 }
-redrawPage({ currentTarget: { className: 'menu' } });
+
+Object.values(entities).forEach(({ imgUrl }) => pngTypeNames.push(imgUrl.split('.png')[0].split('/').at(-1)));
+
 preload('./img/', pngTypeNames, '.png');
+redrawPage({ currentTarget: { className: 'menu' } });
 Object.entries(defaultKeybinds).forEach(([key, value]) => {
   if (!localStorage.getItem(`keybind ${key}`)) {
     changeLocalStorage(`keybind ${key}`, value);
