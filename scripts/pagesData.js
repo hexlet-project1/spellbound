@@ -121,10 +121,22 @@ const pagesData = {
       .addEventListener('click', resetKeybinds);
   },
   stage: `
-    <a href="javascript:redrawPage(menu)" class="text_back">&larr; Go Back</a>
+    <a href="javascript:redrawPage(menu);" class="text_back">&larr; Go Back</a>
     <div class="cont">
+    <div>
+      <div class="hp player-hp"></div>
+      <div class= "player-energy"></div>
       <div class="hp enemy-hp"></div>
-      <div class="hp enemy-hp2"></div>
+      <div class="enemy-energy"></div>
+    </div>
+      <div class ="entities">
+        <div class="player">
+          <img>
+        </div>
+        <div class="enemy">
+          <img>
+        </div>
+      </div>
       <div class="interaction">
         <div class="fight_skills">
           <div class="skill_position water">
@@ -135,67 +147,124 @@ const pagesData = {
             <img src="img/skill_fire.png" class ="skill_img"/>
             <p class="fight_skills_text"></p>
           </div>
-          <div class="skill_position earth">
-            <img src="img/skill_earth.png" class ="skill_img"/>
-            <p class="fight_skills_text"></p>
-          </div>
           <div class="skill_position air">
             <img src="img/skill_air.png" class ="skill_img"/>
             <p class="fight_skills_text"></p>
           </div>
+          <div class="skill_position earth">
+            <img src="img/skill_earth.png" class ="skill_img"/>
+            <p class="fight_skills_text"></p>
+          </div>
+          <div class="skill_postion dodge">
+            <div class="skill_dodge"><p class="fight_skills_text"><span>dodge</span></p></div>
+            <p class="fight_skills_text"><span>space</span></p>
+          </div>
         </div>
         <div class="arrows">
-          <img src="img/arrow_horizon.png" class="arrow_left" />
-          <img src="img/arrow_vertical.png" class="arrow_top" />
-          <img src="img/arrow_vertical.png" class="arrow_bottom" />
-          <img src="img/arrow_horizon.png" class="arrow_right" />
+          <img src="img/arrow_horizon.png" class="arrow arrow_left" />
+          <img src="img/arrow_vertical.png" class="arrow arrow_up" />
+          <img src="img/arrow_vertical.png" class="arrow arrow_down" />
+          <img src="img/arrow_horizon.png" class="arrow arrow_right" />
         </div>
       </div>
     </div>
   `,
-  stageScripts(number) {
-    body.style['background-image'] = `url(img/stage${number}.png)`;
+  stageScripts(stage) {
+    body.style['background-image'] = `url(img/stage${stage}.png)`;
     defKeys.forEach((skillName) => {
       const skillDiv = document.getElementsByClassName(skillName)[0];
       const skillP = skillDiv.querySelector('p');
       skillP.innerText = localStorage.getItem(`keybind ${skillName}`);
     });
-    function changeBorder(skillName) {
-      Object.values(document.getElementsByClassName('skill_img')).forEach(
-        (e) => {
-          e.style.borderColor = '#381015';
-        },
-      );
+    function changeBorder(skillName, imgClass) {
+      Object.values(document.getElementsByClassName(imgClass)).forEach((e) => {
+        e.style.borderColor = '#381015';
+      });
       document
         .getElementsByClassName(skillName)[0]
         .querySelector('img').style.borderColor = 'rgb(236, 236, 61)';
     }
-    function chooseSkill(event) {
+    function keyAction(event) {
+      if (player.info.currentHp < 0) {
+        document.removeEventListener('keyup', keyAction);
+        return;
+      }
       const codeKey = event.code.toLowerCase();
-      const keys = Object.keys(defaultKeybinds);
-      for (let i = 0; i < keys.length; i += 1) {
-        const skillName = keys[i];
-        if (
-          codeKey.startsWith('key')
-          && codeKey.at(-1) === localStorage.getItem(`keybind ${skillName}`)
-        ) {
-          changeBorder(skillName);
+      if (codeKey.startsWith('key')) {
+        const keys = Object.keys(defaultKeybinds);
+        for (let i = 0; i < keys.length; i += 1) {
+          const skillName = keys[i];
+          if (codeKey.at(-1) === localStorage.getItem(`keybind ${skillName}`)) {
+            changeBorder(skillName, 'skill_img');
+            game.clearArrows();
+            game.changeArrow();
+            game.choosenElement = skillName;
+            return;
+          }
+        }
+      } else if (codeKey.startsWith('arrow')) {
+        if (game.choosenElement === null) return;
+        if (!game.arrowActions(codeKey)) {
+          document.removeEventListener('keyup', keyAction);
+          game.choosenElement = null;
+          game.clearArrows();
+        }
+      } else if (codeKey === 'space') {
+        if (game.enemyDmg === 100) {
+          document.documentElement.style.setProperty(
+            '--player-energy-color',
+            'aqua',
+          );
+          game.enemyDmg = 25;
+          setTimeout(() => {
+            document.documentElement.style.setProperty(
+              '--player-energy-color',
+              'rgb(236, 236, 61)',
+            );
+            game.enemyDmg = 100;
+          }, 2500);
         }
       }
     }
-    document.addEventListener('keyup', chooseSkill);
+    document.addEventListener('keyup', keyAction);
+    const player = new Entity(entities.player);
+    const enemies = getEnemiesStage(stage);
+    const game = new GameTurns(player, enemies, stage);
+    document.querySelector('.player').querySelector('img').src = player.info.imgUrl;
+    document.querySelector('.enemy').querySelector('img').src = enemies.at(-1).info.imgUrl;
+    game.changeHpbar('--enemy-hp-percent');
+    game.changeHpbar('--player-hp-percent');
+    game.changeEnergy('--enemy-energy');
+    game.changeEnergy('--player-energy');
+    game.choosenElement = null;
+    game.clearArrows();
+    const id = setInterval(() => {
+      if (!document.querySelector('.cont')) {
+        clearInterval(id);
+        game.changeHpbar('--player-hp-percent');
+        game.changeHpbar('--enemy-hp-percent');
+        game.clearEnemies();
+        game.choosenElement = null;
+        return;
+      }
+      if (!game.tryAttack('enemies')) {
+        clearInterval(id);
+      }
+    }, 1000);
   },
 };
-
+const menu = { currentTarget: { className: 'menu' } };
 const defaultKeybinds = {
   water: 'q',
   fire: 'w',
   air: 'e',
   earth: 'r',
 };
+const arrowsDirections = ['left', 'up', 'down', 'right'];
 const defKeys = Object.keys(defaultKeybinds);
 const maxStage = 9;
 const pngTypeNames = [
+  'menu_bg',
   'skill_air',
   'skill_earth',
   'skill_fire',
@@ -206,4 +275,3 @@ const pngTypeNames = [
 for (let i = 0; i < maxStage; i += 1) {
   pngTypeNames.push(`stage${i + 1}`);
 }
-const menu = { currentTarget: { className: 'menu' } };

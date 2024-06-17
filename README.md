@@ -23,6 +23,7 @@ The main character is learning from an old mage, the last keeper of ancient know
 * Mouse, Left Click for menu actions.
 * Q (water), W (fire), E (air), R (earth) to switch elements.
 * Arrow keys for combos.
+* Space for dodge 75% enemy dmg.
 * There is the possibility  to to set up control keybinds
   
 # *Enjoy your journey through the elements in Spellbound!*
