@@ -10,9 +10,9 @@ const pagesData = {
     <p class="text_menu_but">SETTINGS</p>
   </button>`,
   menuScripts() {
-    if (localStorage.getItem('currentStage') > 1) {
-      document.querySelector('.menu_newGame').insertAdjacentHTML(
-        'beforebegin',
+    if (localStorage.getItem("currentStage") > 1) {
+      document.querySelector(".menu_newGame").insertAdjacentHTML(
+        "beforebegin",
         `
       <button class="button_menu menu_continue">
         <p class="text_menu_but">CONTINUE</p>
@@ -20,27 +20,27 @@ const pagesData = {
       );
     }
     document
-      .querySelectorAll('.button_menu')
-      .forEach((button) => button.addEventListener('click', redrawPage));
+      .querySelectorAll(".button_menu")
+      .forEach((button) => button.addEventListener("click", redrawPage));
   },
   menu_continue: `
   <a href="javascript:redrawPage(menu)" class="text_back">&larr; Go Back</a>
   <div class="stages">
   </div>`,
   menu_continueScripts() {
-    const stagesDiv = document.querySelector('.stages');
+    const stagesDiv = document.querySelector(".stages");
     const insertStages = (stages) => {
       for (let i = 0; i < stages; i += 1) {
         const stageIndex = i % 3;
         if (stageIndex === 0) {
           stagesDiv.insertAdjacentHTML(
-            'beforeend',
+            "beforeend",
             `<div class="stages_group">
             </div>`,
           );
         }
         stagesDiv.lastChild.insertAdjacentHTML(
-          'beforeend',
+          "beforeend",
           `
           <button class="stage stage_margin stage_${i + 1}">
             <span class="text_stage">STAGE ${i + 1}</span>
@@ -48,16 +48,16 @@ const pagesData = {
         );
         const stageElem = document.getElementsByClassName(`stage_${i + 1}`)[0];
         const stageStyle = stageElem.style;
-        stageStyle['background-size'] = 'cover';
-        stageStyle['background-image'] = `url(img/stage${i + 1}.png)`;
-        stageElem.addEventListener('click', redrawPage);
+        stageStyle["background-size"] = "cover";
+        stageStyle["background-image"] = `url(img/stage${i + 1}.png)`;
+        stageElem.addEventListener("click", redrawPage);
       }
     };
-    insertStages(Number(localStorage.getItem('currentStage')));
+    insertStages(Number(localStorage.getItem("currentStage")));
   },
-  menu_newGame: '',
+  menu_newGame: "",
   menu_newGameScripts() {
-    redrawPage({ currentTarget: { className: 'stage_1' } });
+    redrawPage({ currentTarget: { className: "stage_1" } });
   },
   menu_settings: `
   <a href="javascript:redrawPage(menu)" class="text_back">&larr; Go Back</a>
@@ -94,10 +94,10 @@ const pagesData = {
     </div>
   </div>`,
   menu_settingsScripts() {
-    const buttons = document.querySelectorAll('.keybind');
+    const buttons = document.querySelectorAll(".keybind");
     buttons.forEach((button) => {
       const { className } = button;
-      const skillName = className.split(' ')[1];
+      const skillName = className.split(" ")[1];
       if (!localStorage.getItem(className)) {
         changeLocalStorage(className, defaultKeybinds[skillName]);
       }
@@ -105,7 +105,7 @@ const pagesData = {
         button.firstChild,
         localStorage.getItem(className) ?? defaultKeybinds[skillName],
       );
-      button.addEventListener('click', (event) => changeKeybind(event));
+      button.addEventListener("click", (event) => changeKeybind(event));
     });
     const resetKeybinds = () => {
       Object.entries(defaultKeybinds).forEach(([key, value]) => {
@@ -117,8 +117,8 @@ const pagesData = {
       });
     };
     document
-      .querySelector('.keybinds_reset')
-      .addEventListener('click', resetKeybinds);
+      .querySelector(".keybinds_reset")
+      .addEventListener("click", resetKeybinds);
   },
   stage: `
     <a href="javascript:redrawPage(menu);" class="text_back">&larr; Go Back</a>
@@ -170,107 +170,109 @@ const pagesData = {
     </div>
   `,
   stageScripts(stage) {
-    body.style['background-image'] = `url(img/stage${stage}.png)`;
+    body.style["background-image"] = `url(img/stage${stage}.png)`;
     defKeys.forEach((skillName) => {
       const skillDiv = document.getElementsByClassName(skillName)[0];
-      const skillP = skillDiv.querySelector('p');
+      const skillP = skillDiv.querySelector("p");
       skillP.innerText = localStorage.getItem(`keybind ${skillName}`);
     });
     function changeBorder(skillName, imgClass) {
       Object.values(document.getElementsByClassName(imgClass)).forEach((e) => {
-        e.style.borderColor = '#381015';
+        e.style.borderColor = "#381015";
       });
       document
         .getElementsByClassName(skillName)[0]
-        .querySelector('img').style.borderColor = 'rgb(236, 236, 61)';
+        .querySelector("img").style.borderColor = "rgb(236, 236, 61)";
     }
     function keyAction(event) {
       if (player.info.currentHp < 0) {
-        document.removeEventListener('keyup', keyAction);
+        document.removeEventListener("keyup", keyAction);
         return;
       }
       const codeKey = event.code.toLowerCase();
-      if (codeKey.startsWith('key')) {
+      if (codeKey.startsWith("key")) {
         const keys = Object.keys(defaultKeybinds);
         for (let i = 0; i < keys.length; i += 1) {
           const skillName = keys[i];
           if (codeKey.at(-1) === localStorage.getItem(`keybind ${skillName}`)) {
-            changeBorder(skillName, 'skill_img');
+            changeBorder(skillName, "skill_img");
             game.clearArrows();
             game.changeArrow();
             game.choosenElement = skillName;
             return;
           }
         }
-      } else if (codeKey.startsWith('arrow')) {
+      } else if (codeKey.startsWith("arrow")) {
         if (game.choosenElement === null) return;
         if (!game.arrowActions(codeKey)) {
-          document.removeEventListener('keyup', keyAction);
+          document.removeEventListener("keyup", keyAction);
           game.choosenElement = null;
           game.clearArrows();
         }
-      } else if (codeKey === 'space') {
+      } else if (codeKey === "space") {
         if (game.enemyDmg === 100) {
           document.documentElement.style.setProperty(
-            '--player-energy-color',
-            'aqua',
+            "--player-energy-color",
+            "aqua",
           );
           game.enemyDmg = 25;
           setTimeout(() => {
             document.documentElement.style.setProperty(
-              '--player-energy-color',
-              'rgb(236, 236, 61)',
+              "--player-energy-color",
+              "rgb(236, 236, 61)",
             );
             game.enemyDmg = 100;
           }, 2500);
         }
       }
     }
-    document.addEventListener('keyup', keyAction);
+    document.addEventListener("keyup", keyAction);
     const player = new Entity(entities.player);
     const enemies = getEnemiesStage(stage);
     const game = new GameTurns(player, enemies, stage);
-    document.querySelector('.player').querySelector('img').src = player.info.imgUrl;
-    document.querySelector('.enemy').querySelector('img').src = enemies.at(-1).info.imgUrl;
-    game.changeHpbar('--enemy-hp-percent');
-    game.changeHpbar('--player-hp-percent');
-    game.changeEnergy('--enemy-energy');
-    game.changeEnergy('--player-energy');
+    document.querySelector(".player").querySelector("img").src =
+      player.info.imgUrl;
+    document.querySelector(".enemy").querySelector("img").src =
+      enemies.at(-1).info.imgUrl;
+    game.changeHpbar("--enemy-hp-percent");
+    game.changeHpbar("--player-hp-percent");
+    game.changeEnergy("--enemy-energy");
+    game.changeEnergy("--player-energy");
     game.choosenElement = null;
     game.clearArrows();
     const id = setInterval(() => {
-      if (!document.querySelector('.cont')) {
+      if (!document.querySelector(".cont")) {
         clearInterval(id);
-        game.changeHpbar('--player-hp-percent');
-        game.changeHpbar('--enemy-hp-percent');
+        game.changeHpbar("--player-hp-percent");
+        game.changeHpbar("--enemy-hp-percent");
         game.clearEnemies();
         game.choosenElement = null;
         return;
       }
-      if (!game.tryAttack('enemies')) {
+      if (!game.tryAttack("enemies")) {
         clearInterval(id);
       }
     }, 1000);
   },
 };
-const menu = { currentTarget: { className: 'menu' } };
+const menu = { currentTarget: { className: "menu" } };
 const defaultKeybinds = {
-  water: 'q',
-  fire: 'w',
-  air: 'e',
-  earth: 'r',
+  water: "q",
+  fire: "w",
+  air: "e",
+  earth: "r",
 };
-const arrowsDirections = ['left', 'up', 'down', 'right'];
+const arrowsDirections = ["left", "up", "down", "right"];
 const defKeys = Object.keys(defaultKeybinds);
 const maxStage = 9;
 const pngTypeNames = [
-  'menu_bg',
-  'skill_air',
-  'skill_earth',
-  'skill_fire',
-  'skill_water',
-  'arrow_horizon',
-  'arrow_vertical',
+  "menu_bg",
+  "skill_air",
+  "skill_earth",
+  "skill_fire",
+  "skill_water",
+  "arrow_horizon",
+  "arrow_vertical",
 ];
 for (let i = 0; i < maxStage; i += 1) {
   pngTypeNames.push(`stage${i + 1}`);

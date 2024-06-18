@@ -7,7 +7,7 @@ class GameTurns {
 
   choosenElement = null;
 
-  currentArrow = 'down';
+  currentArrow = "down";
 
   arrowOrder = 0;
 
@@ -16,11 +16,12 @@ class GameTurns {
   enemyDmg = 100;
 
   changeArrow() {
-    document.querySelectorAll('.arrow').forEach((e) => {
-      e.style.filter = 'none';
+    document.querySelectorAll(".arrow").forEach((e) => {
+      e.style.filter = "none";
     });
     this.currentArrow = arrowsDirections[Math.floor(Math.random() * 4)];
-    document.querySelector(`.arrow_${this.currentArrow}`).style.filter = 'drop-shadow(5px 5px 10px rgb(236, 236, 61))';
+    document.querySelector(`.arrow_${this.currentArrow}`).style.filter =
+      "drop-shadow(5px 5px 10px rgb(236, 236, 61))";
   }
 
   arrowActions(codeKey) {
@@ -28,8 +29,8 @@ class GameTurns {
       return true;
     }
     this.arrowOrder += 1;
-    this.changeEnergy('--player-energy', this.arrowOrder * 10);
-    if (codeKey.split('arrow')[1] === this.currentArrow) {
+    this.changeEnergy("--player-energy", this.arrowOrder * 10);
+    if (codeKey.split("arrow")[1] === this.currentArrow) {
       this.successPercent += 10;
     }
     this.changeArrow();
@@ -37,7 +38,7 @@ class GameTurns {
       let temp = true;
       if (this.successPercent > 60) {
         temp = this.tryAttack(
-          'player',
+          "player",
           [this.choosenElement],
           this.successPercent,
         );
@@ -56,8 +57,8 @@ class GameTurns {
   clearArrows() {
     this.arrowOrder = 0;
     this.successPercent = 0;
-    this.changeEnergy('--player-energy', this.successPercent);
-    document.querySelector(`.arrow_${this.currentArrow}`).style.filter = 'none';
+    this.changeEnergy("--player-energy", this.successPercent);
+    document.querySelector(`.arrow_${this.currentArrow}`).style.filter = "none";
   }
 
   changeHpbar(
@@ -85,18 +86,19 @@ class GameTurns {
       return false;
     }
     const enemy = this.enemies.at(-1);
-    if (attackerType === 'player') {
+    if (attackerType === "player") {
       player.dealDmg(enemy, types, finalPercent);
-      this.changeHpbar('--enemy-hp-percent', enemy);
+      this.changeHpbar("--enemy-hp-percent", enemy);
       if (enemy.info.currentHp <= 0) {
-        this.changeEnergy('--enemy-energy');
+        this.changeEnergy("--enemy-energy");
         this.enemies.pop();
         if (this.enemies.length === 0) {
           this.makeResult(true);
           return false;
         }
-        document.querySelector('.enemy').querySelector('img').src = this.enemies.at(-1).info.imgUrl;
-        this.changeHpbar('--enemy-hp-percent');
+        document.querySelector(".enemy").querySelector("img").src =
+          this.enemies.at(-1).info.imgUrl;
+        this.changeHpbar("--enemy-hp-percent");
       }
       return true;
     }
@@ -111,7 +113,7 @@ class GameTurns {
           enemy.info.cd -= 0.5;
           enemy.info.cdDelay = false;
           this.changeEnergy(
-            '--enemy-energy',
+            "--enemy-energy",
             100 - (enemy.info.cd / enemy.info.atkDelay) * 100,
           );
         }, 500);
@@ -119,39 +121,43 @@ class GameTurns {
     } else {
       enemy.info.cd = enemy.info.atkDelay;
       enemy.dealDmg(player, enemy.info.types, this.enemyDmg);
-      this.changeHpbar('--player-hp-percent', player);
+      this.changeHpbar("--player-hp-percent", player);
       enemy.info.cd = enemy.info.atkDelay;
-      this.changeEnergy('--enemy-energy', 0);
+      this.changeEnergy("--enemy-energy", 0);
     }
     return true;
   }
 
   makeResult(resBool) {
     body
-      .querySelector('.interaction')
+      .querySelector(".interaction")
       .insertAdjacentHTML(
-        'beforebegin',
+        "beforebegin",
         '<button class="fight_result"></button>',
       );
-    const resultButton = body.querySelector('.fight_result');
-    const reachedStage = localStorage.getItem('currentStage');
+    const resultButton = body.querySelector(".fight_result");
+    const reachedStage = localStorage.getItem("currentStage");
     const { stage } = this;
     if (resBool) {
       if (reachedStage === stage && maxStage > reachedStage) {
-        localStorage.setItem('currentStage', Number(stage) + 1);
+        localStorage.setItem("currentStage", Number(stage) + 1);
       }
       if (Number(stage) < maxStage) {
-        resultButton.textContent = 'continue';
-        resultButton.addEventListener('click', () => redrawPage({
-          currentTarget: { className: `stage_${Number(stage) + 1}` },
-        }));
+        resultButton.textContent = "continue";
+        resultButton.addEventListener("click", () =>
+          redrawPage({
+            currentTarget: { className: `stage_${Number(stage) + 1}` },
+          }),
+        );
       } else {
-        resultButton.textContent = 'back to menu';
-        resultButton.addEventListener('click', () => redrawPage(menu));
+        resultButton.textContent = "back to menu";
+        resultButton.addEventListener("click", () => redrawPage(menu));
       }
     } else {
-      resultButton.textContent = 'try again';
-      resultButton.addEventListener('click', () => redrawPage({ currentTarget: { className: `stage_${stage}` } }));
+      resultButton.textContent = "try again";
+      resultButton.addEventListener("click", () =>
+        redrawPage({ currentTarget: { className: `stage_${stage}` } }),
+      );
     }
   }
 }
