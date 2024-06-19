@@ -19,13 +19,17 @@ class GameTurns {
     document.querySelectorAll('.arrow').forEach((e) => {
       e.style.filter = 'none';
     });
-    const i = Math.floor(Math.random() * 4)
-    arrowsDirections.forEach(element => {
-      document.querySelector(`.arrow_${element}`).style[cssDirections[element]] = '0px'
+    const i = Math.floor(Math.random() * 4);
+    arrowsDirections.forEach((element) => {
+      document.querySelector(`.arrow_${element}`).style[
+        cssDirections[element]
+      ] = '0px';
     });
     this.currentArrow = arrowsDirections[i];
     document.querySelector(`.arrow_${this.currentArrow}`).style.filter = 'drop-shadow(5px 5px 6px rgb(236, 236, 61))';
-    document.querySelector(`.arrow_${this.currentArrow}`).style[cssDirections[this.currentArrow]] = '50px';
+    document.querySelector(`.arrow_${this.currentArrow}`).style[
+      cssDirections[this.currentArrow]
+    ] = '50px';
   }
 
   arrowActions(codeKey) {
@@ -61,7 +65,9 @@ class GameTurns {
     this.successPercent = 0;
     this.changeEnergy('--player-energy', this.successPercent);
     document.querySelector(`.arrow_${this.currentArrow}`).style.filter = 'none';
-    document.querySelector(`.arrow_${this.currentArrow}`).style[cssDirections[this.currentArrow]] = '0px'
+    document.querySelector(`.arrow_${this.currentArrow}`).style[
+      cssDirections[this.currentArrow]
+    ] = '0px';
   }
 
   changeHpbar(
@@ -100,7 +106,9 @@ class GameTurns {
         document.querySelector('.enemy').querySelector('img').src = this.enemies.at(-1).info.imgUrl;
         const enemyStyles = Object.entries(this.enemies.at(-1).info.styles);
         for (let i = 0; enemyStyles.length > i; i += 1) {
-          document.querySelector('.enemy').querySelector('img').style[enemyStyles[i][0]] = enemyStyles[i][1];
+          document.querySelector('.enemy').querySelector('img').style[
+            enemyStyles[i][0]
+          ] = enemyStyles[i][1];
         }
         this.changeHpbar('--enemy-hp-percent');
       }

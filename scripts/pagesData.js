@@ -107,8 +107,7 @@ const pagesData = {
     </div>
   </div>
   </div>
-  `
-  ,
+  `,
   menu_settingsScripts() {
     const buttons = document.querySelectorAll('.keybind');
     buttons.forEach((button) => {
@@ -137,24 +136,25 @@ const pagesData = {
       .addEventListener('click', resetKeybinds);
     body.querySelector('.change-pause').addEventListener('click', () => {
       const audio = document.getElementById('bg-audio');
-      const audioButSpan = body.querySelector('.change-pause').querySelector('span');
+      const audioButSpan = body
+        .querySelector('.change-pause')
+        .querySelector('span');
       if (audio.paused) {
-        audio.play()
+        audio.play();
         audioButSpan.innerText = 'pause music';
-        localStorage.setItem('audioStatus', 'play')
-      }
-      else {
-        audio.pause()
+        localStorage.setItem('audioStatus', 'play');
+      } else {
+        audio.pause();
         audioButSpan.innerText = 'play music';
-        localStorage.setItem('audioStatus', 'pause')
+        localStorage.setItem('audioStatus', 'pause');
       }
-    })
-    const volumeForm = document.getElementById('volume')
+    });
+    const volumeForm = document.getElementById('volume');
     volumeForm.value = localStorage.getItem('audioVolume');
     volumeForm.addEventListener('input', () => {
       audio.volume = volume.value;
-      localStorage.setItem('audioVolume', volume.value)
-    })
+      localStorage.setItem('audioVolume', volume.value);
+    });
   },
   stage: `
     <a href="javascript:redrawPage(menu);" class="text_back">&larr; Go Back</a>
@@ -285,12 +285,16 @@ const pagesData = {
     document.querySelector('.player').querySelector('img').src = player.info.imgUrl;
     const playerStyles = Object.entries(player.info.styles);
     for (let i = 0; playerStyles.length > i; i += 1) {
-      document.querySelector('.player').querySelector('img').style[playerStyles[i][0]] = playerStyles[i][1];
+      document.querySelector('.player').querySelector('img').style[
+        playerStyles[i][0]
+      ] = playerStyles[i][1];
     }
     document.querySelector('.enemy').querySelector('img').src = enemies.at(-1).info.imgUrl;
     const enemyStyles = Object.entries(enemies.at(-1).info.styles);
     for (let i = 0; enemyStyles.length > i; i += 1) {
-      document.querySelector('.enemy').querySelector('img').style[enemyStyles[i][0]] = enemyStyles[i][1];
+      document.querySelector('.enemy').querySelector('img').style[
+        enemyStyles[i][0]
+      ] = enemyStyles[i][1];
     }
     game.changeHpbar('--enemy-hp-percent');
     game.changeHpbar('--player-hp-percent');

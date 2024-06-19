@@ -51,28 +51,33 @@ async function preload(dir, files, type, preloadI = 0) {
       body.querySelector('.preload').removeChild(img);
       if (preloadI < files.length - 1) {
         preload(dir, files, type, preloadI + 1);
-      } else body.removeChild(body.querySelector('.preload'))
-    }, 50)
-  }
+      } else body.removeChild(body.querySelector('.preload'));
+    }, 50);
+  };
 }
 
 Object.values(entities).forEach(({ imgUrl }) => pngTypeNames.push(imgUrl.split('.png')[0].split('/').at(-1)));
 
 preload('./img/', pngTypeNames, '.png');
-body.querySelector('.static').insertAdjacentHTML('afterbegin', `<audio id="bg-audio" autoplay muted loop>
-  <source src="./audio/sound-bg.mp3" type="audio/mpeg"> </audio>`)
+body.querySelector('.static').insertAdjacentHTML(
+  'afterbegin',
+  `<audio id="bg-audio" autoplay muted loop>
+  <source src="./audio/sound-bg.mp3" type="audio/mpeg"> </audio>`,
+);
 const playAudio = () => {
-    audio.play().then(() => {
+  audio
+    .play()
+    .then(() => {
       audio.muted = false;
-      window.removeEventListener('click', playAudio)
-    }).catch(() => {
-  });
-}
+      window.removeEventListener('click', playAudio);
+    })
+    .catch(() => {});
+};
 const audio = document.getElementById('bg-audio');
-const audioStatus = localStorage.getItem('audioStatus')
+const audioStatus = localStorage.getItem('audioStatus');
 if (audioStatus === null) localStorage.setItem('audioStatus', 'play');
-if (localStorage.getItem('audioVolume') === null) localStorage.setItem('audioVolume', '0.5')
-audio.volume = localStorage.getItem('audioVolume')
+if (localStorage.getItem('audioVolume') === null) localStorage.setItem('audioVolume', '0.5');
+audio.volume = localStorage.getItem('audioVolume');
 if (localStorage.getItem('audioStatus') === 'play') window.addEventListener('click', playAudio);
 redrawPage({ currentTarget: { className: 'menu' } });
 Object.entries(defaultKeybinds).forEach(([key, value]) => {

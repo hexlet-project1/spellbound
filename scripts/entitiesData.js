@@ -33,10 +33,10 @@ const entities = {
   player: {
     imgUrl: './img/entity_player_female.png',
     styles: {
-      'width': '90%',
-      'height': '90%',
+      width: '90%',
+      height: '90%',
       'margin-top': '17%',
-      'transform': 'rotate(4deg)'
+      transform: 'rotate(4deg)',
     },
     types: ['****'],
     maxHp: 100,
@@ -52,10 +52,10 @@ const entities = {
   fireGolem: {
     imgUrl: './img/entity_fireGolem.png',
     styles: {
-      'width': '100%',
-      'height': '100%',
+      width: '100%',
+      height: '100%',
       'margin-top': '19%',
-      'transform': 'rotate(-10deg)'
+      transform: 'rotate(-10deg)',
     },
     types: ['fire'],
     maxHp: 60,
@@ -71,8 +71,8 @@ const entities = {
   turtle: {
     imgUrl: './img/entity_turtle.png',
     styles: {
-      'width': '80%',
-      'height': '80%',
+      width: '80%',
+      height: '80%',
       'margin-top': '24%',
     },
     types: ['water', 'earth'],
@@ -90,7 +90,7 @@ const entities = {
     imgUrl: './img/entity_waterElemental.png',
     styles: {
       'margin-top': '5%',
-      'transform': 'rotate(-10deg)'
+      transform: 'rotate(-10deg)',
     },
     types: ['water'],
     maxHp: 60,
@@ -106,10 +106,10 @@ const entities = {
   kraken: {
     imgUrl: './img/entity_kraken.png',
     styles: {
-      'width': '90%',
-      'height': '90%',
+      width: '90%',
+      height: '90%',
       'margin-top': '10%',
-      'transform': 'rotate(-10deg)'
+      transform: 'rotate(-10deg)',
     },
     types: ['water', 'earth'],
     maxHp: 65,
@@ -125,10 +125,10 @@ const entities = {
   waterSnake: {
     imgUrl: './img/entity_waterSnake.png',
     styles: {
-      'width': '90%',
-      'height': '90%',
+      width: '90%',
+      height: '90%',
       'margin-top': '5%',
-      'transform': 'rotate(-15deg)'
+      transform: 'rotate(-15deg)',
     },
     types: ['water'],
     maxHp: 80,
@@ -144,10 +144,10 @@ const entities = {
   tree: {
     imgUrl: './img/entity_tree.png',
     styles: {
-      'width': '90%',
-      'height': '90%',
+      width: '90%',
+      height: '90%',
       'margin-top': '22%',
-      'transform': 'rotate(-21deg)'
+      transform: 'rotate(-21deg)',
     },
     types: ['earth'],
     maxHp: 75,
@@ -179,10 +179,10 @@ const entities = {
   earthGolem: {
     imgUrl: './img/entity_earthGolem.png',
     styles: {
-      'width': '100%',
-      'height': '100%',
+      width: '100%',
+      height: '100%',
       'margin-top': '17%',
-      'transform': 'rotate(3deg)'
+      transform: 'rotate(3deg)',
     },
     types: ['earth'],
     maxHp: 100,
@@ -198,10 +198,10 @@ const entities = {
   yeti: {
     imgUrl: './img/entity_yeti.png',
     styles: {
-      'width': '90%',
-      'height': '90%',
+      width: '90%',
+      height: '90%',
       'margin-top': '24%',
-      'transform': 'rotate(7deg)'
+      transform: 'rotate(7deg)',
     },
     types: ['water', 'earth'],
     maxHp: 75,
@@ -217,10 +217,10 @@ const entities = {
   airElemental: {
     imgUrl: './img/entity_airElemental.png',
     styles: {
-      'width': '95%',
-      'height': '95%',
+      width: '95%',
+      height: '95%',
       'margin-top': '7%',
-      'transform': 'rotate(20deg)'
+      transform: 'rotate(20deg)',
     },
     types: ['air', 'water'],
     maxHp: 115,
@@ -236,11 +236,11 @@ const entities = {
   harpy: {
     imgUrl: './img/entity_harpy.png',
     styles: {
-      'width': '100%',
-      'height': '100%',
+      width: '100%',
+      height: '100%',
       'margin-top': '20%',
       'margin-left': '30%',
-      'transform': 'rotate(-15deg)'
+      transform: 'rotate(-15deg)',
     },
     types: ['air', 'earth'],
     maxHp: 85,
@@ -255,8 +255,7 @@ const entities = {
   },
   fireElemental: {
     imgUrl: './img/entity_fireElemental.png',
-    styles: {
-    },
+    styles: {},
     types: ['fire'],
     maxHp: 85,
     baseAtk: 50,
@@ -272,7 +271,7 @@ const entities = {
     imgUrl: './img/entity_ashenDevil.png',
     styles: {
       'margin-top': '5%',
-      'transform': 'rotate(-10deg)'
+      transform: 'rotate(-10deg)',
     },
     types: ['fire', 'earth'],
     maxHp: 115,
@@ -288,11 +287,11 @@ const entities = {
   vulcanoGoddess: {
     imgUrl: './img/entity_vulcanoGoddess.png',
     styles: {
-      'width': '110%',
-      'height': '110%',
+      width: '110%',
+      height: '110%',
       'margin-top': '4%',
       'margin-left': '28%',
-      'transform': 'rotate(-23deg)'
+      transform: 'rotate(-23deg)',
     },
     types: ['fire', 'earth'],
     maxHp: 150,
