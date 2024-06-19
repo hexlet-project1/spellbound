@@ -19,14 +19,15 @@ class GameTurns {
     document.querySelectorAll('.arrow').forEach((e) => {
       e.style.filter = 'none';
     });
-    this.currentArrow = arrowsDirections[Math.floor(Math.random() * 4)];
-    document.querySelector(`.arrow_${this.currentArrow}`).style.filter = 'drop-shadow(5px 5px 10px rgb(236, 236, 61))';
+    const i = Math.floor(Math.random() * 4)
+    document.querySelector(`.arrow_${this.currentArrow}`).style[cssDirections[this.currentArrow]] = '0px'
+    this.currentArrow = arrowsDirections[i];
+    document.querySelector(`.arrow_${this.currentArrow}`).style.filter = 'drop-shadow(5px 5px 6px rgb(236, 236, 61))';
+    document.querySelector(`.arrow_${this.currentArrow}`).style[cssDirections[this.currentArrow]] = '50px';
   }
 
   arrowActions(codeKey) {
-    if (this.choosenElement === null) {
-      return true;
-    }
+    if (this.choosenElement === null) return true;
     this.arrowOrder += 1;
     this.changeEnergy('--player-energy', this.arrowOrder * 10);
     if (codeKey.split('arrow')[1] === this.currentArrow) {
@@ -81,9 +82,7 @@ class GameTurns {
 
   tryAttack(attackerType, types, finalPercent) {
     const { player } = this;
-    if (this.enemies.length === 0) {
-      return false;
-    }
+    if (this.enemies.length === 0) return false;
     const enemy = this.enemies.at(-1);
     if (attackerType === 'player') {
       player.dealDmg(enemy, types, finalPercent);
@@ -96,6 +95,10 @@ class GameTurns {
           return false;
         }
         document.querySelector('.enemy').querySelector('img').src = this.enemies.at(-1).info.imgUrl;
+        const enemyStyles = Object.entries(this.enemies.at(-1).info.styles);
+        for (let i = 0; enemyStyles.length > i; i += 1) {
+          document.querySelector('.enemy').querySelector('img').style[enemyStyles[i][0]] = enemyStyles[i][1];
+        }
         this.changeHpbar('--enemy-hp-percent');
       }
       return true;
@@ -104,7 +107,7 @@ class GameTurns {
       this.makeResult(false);
       return false;
     }
-    if (enemy.info.cd !== 0) {
+    if (enemy.info.cd > 0) {
       if (enemy.info.cdDelay === false) {
         enemy.info.cdDelay = true;
         setTimeout(() => {

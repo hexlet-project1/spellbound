@@ -91,8 +91,24 @@ const pagesData = {
       <button class="keybind fire"><span class="text_bin_key"></span></button>
       <button class="keybind air"><span class="text_bin_key"></span></button>
       <button class="keybind earth"><span class="text_bin_key"></span></button>
+  </div>
+  <div class="settings-audio">
+    <p class="text_binding">Audio settings</p>
+    <div class="audio_elements">
+      <button class="change-pause">
+        <span class="text_bin_key">
+          ${localStorage.getItem('audioStatus') === 'play' ? 'pause' : 'play'} music
+        </span>
+      </button>
+    <div class="volume">
+      <input type="range" id="volume" name="volume" min="0" max="1" step="0.01"/><br>
+      <label class="text_bin_key" for="volume">music volume</label>
     </div>
-  </div>`,
+    </div>
+  </div>
+  </div>
+  `
+  ,
   menu_settingsScripts() {
     const buttons = document.querySelectorAll('.keybind');
     buttons.forEach((button) => {
@@ -116,9 +132,29 @@ const pagesData = {
         );
       });
     };
-    document
+    body
       .querySelector('.keybinds_reset')
       .addEventListener('click', resetKeybinds);
+    body.querySelector('.change-pause').addEventListener('click', () => {
+      const audio = document.getElementById('bg-audio');
+      const audioButSpan = body.querySelector('.change-pause').querySelector('span');
+      if (audio.paused) {
+        audio.play()
+        audioButSpan.innerText = 'pause music';
+        localStorage.setItem('audioStatus', 'play')
+      }
+      else {
+        audio.pause()
+        audioButSpan.innerText = 'play music';
+        localStorage.setItem('audioStatus', 'pause')
+      }
+    })
+    const volumeForm = document.getElementById('volume')
+    volumeForm.value = localStorage.getItem('audioVolume');
+    volumeForm.addEventListener('input', () => {
+      audio.volume = volume.value;
+      localStorage.setItem('audioVolume', volume.value)
+    })
   },
   stage: `
     <a href="javascript:redrawPage(menu);" class="text_back">&larr; Go Back</a>
@@ -156,7 +192,7 @@ const pagesData = {
             <p class="fight_skills_text"></p>
           </div>
           <div class="skill_postion dodge">
-            <div class="skill_dodge"><p class="fight_skills_text"><span>dodge</span></p></div>
+            <img src="img/skill_dodge.png" class="dodge_img"/>
             <p class="fight_skills_text"><span>space</span></p>
           </div>
         </div>
@@ -210,11 +246,14 @@ const pagesData = {
           game.clearArrows();
         }
       } else if (codeKey === 'space') {
-        if (game.enemyDmg === 100) {
+        if (game.dodgeReady) {
+          game.dodgeReady = false;
           document.documentElement.style.setProperty(
             '--player-energy-color',
             'aqua',
           );
+          const dodgeImgStyle = body.querySelector('.dodge_img').style;
+          dodgeImgStyle['border-color'] = 'cyan';
           game.enemyDmg = 25;
           setTimeout(() => {
             document.documentElement.style.setProperty(
@@ -222,7 +261,20 @@ const pagesData = {
               'rgb(236, 236, 61)',
             );
             game.enemyDmg = 100;
-          }, 2500);
+            dodgeImgStyle['border-color'] = 'rgba(221, 24, 24, 0.835)';
+            document.documentElement.style.setProperty(
+              '--player-energy-color',
+              'rgba(221, 24, 24, 0.835)',
+            );
+            setTimeout(() => {
+              game.dodgeReady = true;
+              dodgeImgStyle['border-color'] = 'rgb(236, 236, 61)';
+              document.documentElement.style.setProperty(
+                '--player-energy-color',
+                'rgb(236, 236, 61)',
+              );
+            }, 2500);
+          }, 1100);
         }
       }
     }
@@ -231,12 +283,21 @@ const pagesData = {
     const enemies = getEnemiesStage(stage);
     const game = new GameTurns(player, enemies, stage);
     document.querySelector('.player').querySelector('img').src = player.info.imgUrl;
+    const playerStyles = Object.entries(player.info.styles);
+    for (let i = 0; playerStyles.length > i; i += 1) {
+      document.querySelector('.player').querySelector('img').style[playerStyles[i][0]] = playerStyles[i][1];
+    }
     document.querySelector('.enemy').querySelector('img').src = enemies.at(-1).info.imgUrl;
+    const enemyStyles = Object.entries(enemies.at(-1).info.styles);
+    for (let i = 0; enemyStyles.length > i; i += 1) {
+      document.querySelector('.enemy').querySelector('img').style[enemyStyles[i][0]] = enemyStyles[i][1];
+    }
     game.changeHpbar('--enemy-hp-percent');
     game.changeHpbar('--player-hp-percent');
     game.changeEnergy('--enemy-energy');
     game.changeEnergy('--player-energy');
     game.choosenElement = null;
+    game.dodgeReady = true;
     game.clearArrows();
     const id = setInterval(() => {
       if (!document.querySelector('.cont')) {
@@ -261,6 +322,12 @@ const defaultKeybinds = {
   earth: 'r',
 };
 const arrowsDirections = ['left', 'up', 'down', 'right'];
+const cssDirections = {
+  left: 'right',
+  up: 'bottom',
+  down: 'top',
+  right: 'left',
+};
 const defKeys = Object.keys(defaultKeybinds);
 const maxStage = 9;
 const pngTypeNames = [
@@ -269,6 +336,7 @@ const pngTypeNames = [
   'skill_earth',
   'skill_fire',
   'skill_water',
+  'skill_dodge',
   'arrow_horizon',
   'arrow_vertical',
 ];
