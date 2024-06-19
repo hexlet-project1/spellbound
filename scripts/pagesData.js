@@ -159,7 +159,7 @@ const pagesData = {
   stage: `
     <a href="javascript:redrawPage(menu);" class="text_back">&larr; Go Back</a>
     <div class="cont">
-    <div>
+    <div class="bars">
       <div class="hp player-hp"></div>
       <div class= "player-energy"></div>
       <div class="hp enemy-hp"></div>
