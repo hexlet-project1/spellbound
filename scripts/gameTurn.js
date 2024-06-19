@@ -20,7 +20,9 @@ class GameTurns {
       e.style.filter = 'none';
     });
     const i = Math.floor(Math.random() * 4)
-    document.querySelector(`.arrow_${this.currentArrow}`).style[cssDirections[this.currentArrow]] = '0px'
+    arrowsDirections.forEach(element => {
+      document.querySelector(`.arrow_${element}`).style[cssDirections[element]] = '0px'
+    });
     this.currentArrow = arrowsDirections[i];
     document.querySelector(`.arrow_${this.currentArrow}`).style.filter = 'drop-shadow(5px 5px 6px rgb(236, 236, 61))';
     document.querySelector(`.arrow_${this.currentArrow}`).style[cssDirections[this.currentArrow]] = '50px';
@@ -59,6 +61,7 @@ class GameTurns {
     this.successPercent = 0;
     this.changeEnergy('--player-energy', this.successPercent);
     document.querySelector(`.arrow_${this.currentArrow}`).style.filter = 'none';
+    document.querySelector(`.arrow_${this.currentArrow}`).style[cssDirections[this.currentArrow]] = '0px'
   }
 
   changeHpbar(
