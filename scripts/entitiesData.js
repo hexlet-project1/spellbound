@@ -288,11 +288,11 @@ const entities = {
   vulcanoGoddess: {
     imgUrl: './img/entity_vulcanoGoddess.png',
     styles: {
-      'width': '100%',
-      'height': '100%',
-      'margin-top': '18%',
-      'margin-left': '30%',
-      'transform': 'rotate(-22deg)'
+      'width': '110%',
+      'height': '110%',
+      'margin-top': '4%',
+      'margin-left': '28%',
+      'transform': 'rotate(-23deg)'
     },
     types: ['fire', 'earth'],
     maxHp: 150,
