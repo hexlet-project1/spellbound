@@ -31,4 +31,4 @@ The main character is learning from an old mage, the last keeper of ancient know
 
 ![example branch parameter](https://github.com/hexlet-project1/spellbound/actions/workflows/jekyll-gh-pages.yml/badge.svg)
 
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/0cbef7c3a636989d1213/maintainability)](https://codeclimate.com/github/hexlet-project1/spellbound/maintainability)
