@@ -1,6 +1,6 @@
 ![alt text](/img/logo_little_1.png)
 # Spellbound
- Spellbound is a browser game where the main character, a male or female, must control four natural elements.
+ Spellbound is a browser game where the main character must control four natural elements.
 
 
 ## Game Synopsis
